@@ -1,8 +1,19 @@
 <div class="row">
     <aside class="span4">
         <section>
-            <h3><%= @user.name %></h3>
-            <h3><%= @user.email %></h3>
+            <h3><%= current_user.name %></h3>
+            <h3><%= current_user.email %></h3>
+            <h3><% @journeys.each do |journey| %></h3>
+            <h3><%= journey["origin"] %> to <%= journey["destination"] %></h3>
+	            <h3><% journey.waypoints.each do |waypoint| %></h3>
+	            <h3><%= waypoint["way_lat"] %>, <%= waypoint["way_lng"]%></h3>
+	            
+
+            http://maps.googleapis.com/maps/api/directions/json?origin=<%=journey["origin"]%>&destination=<%=journey["destination"]%>&waypoints=<%= waypoint["way_lat"] %>,<%= waypoint["way_lng"]%>|<%= waypoint["way_lat"] %>,<%= waypoint["way_lng"]%>&sensor=false
+            
+            	<h3><% end %></h3>
+            <h3><% end %></h3>
+
         </section>
     </aside>
 </div>
