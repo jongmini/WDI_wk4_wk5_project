@@ -4,10 +4,11 @@ class JourneysController < ApplicationController
     @journey = Journey.new
   end
   def create
+    @list = []
     new_journey = params.require(:journey)
-    # .permit(:name, :origin, :orig_lat, :orig_lng, :destination, :dest_lat, :dest_lng, :user_id)
     signed_in? ? id = current_user.id : nil
     @journey = Journey.create(origin: new_journey["start"], destination: new_journey["end"], user_id: id)
+
     if !new_journey["waypoint"].nil? 
       new_journey["waypoint"].each do |key, waypoint|
       Waypoint.create(way_lat: waypoint["d"], way_lng: waypoint["e"], journey_id: @journey.id)

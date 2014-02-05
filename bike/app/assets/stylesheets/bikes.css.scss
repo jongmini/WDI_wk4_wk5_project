@@ -7,6 +7,10 @@ html, body, #map-canvas {
   margin: 0px;
   padding: 0px
 }
+#map-canvas {
+  z-index: 0;
+}
+
 #panel {
   position: absolute;
   top: 5px;
@@ -16,8 +20,9 @@ html, body, #map-canvas {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #999;
-
+  z-index: 1;
 }
+
 #modepanel {
   position: absolute;
   top: 5px;
@@ -27,4 +32,38 @@ html, body, #map-canvas {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #999;
+  z-index: 1;
+}
+
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 25%;
+  height: 20%;
+  top: 120px;
+  right: 10px;
+  background-color: rgba(127, 140, 141,0.4);
+}
+
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   top: 270px;
+   width: 25%; 
+   height: 60%;
+   z-index: 1;
+   background-color: rgba(127, 140, 141,0.4);
+   color: white;
+   overflow:auto;
+}
+
+
+
+.white {
+  color: white;
+}
+
+.hide {
+  visibility: hidden;
+  height: 0px;
 }

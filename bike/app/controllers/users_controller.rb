@@ -1,9 +1,17 @@
+  require "typhoeus"
 class UsersController < ApplicationController
+
 	def index
 	end  
 
   def show
     @user = User.find(params[:id])
+    @journey = @user.journeys
+    req =  Typhoeus::Request.new("http://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&sensor=false",
+      method: :get,
+      headers: { Accept: "json" }).run
+    @json_stuff = req.body.to_json
+    
   end
 
   def new

@@ -1,19 +1,26 @@
 <div class="row">
-    <aside class="span4">
-        <section>
-            <h3><%= current_user.name %></h3>
-            <h3><%= current_user.email %></h3>
-            <h3><% @journeys.each do |journey| %></h3>
-            <h3><%= journey["origin"] %> to <%= journey["destination"] %></h3>
-	            <h3><% journey.waypoints.each do |waypoint| %></h3>
-	            <h3><%= waypoint["way_lat"] %>, <%= waypoint["way_lng"]%></h3>
-	            
+	<div class="span4">
+    <section>
+      <h3><%= current_user.name %></h3>
+      <h3><%= current_user.email %></h3>
+      <ol>
+      	<% @journey.each do |journey| %>
+	      <li><%= journey["origin"] %> to <%= journey["destination"] %></li>
+		      <h3><% journey.waypoints.each do |waypoint| %></h3>
+		      <h3><%= waypoint["way_lat"] %>, <%= waypoint["way_lng"]%></h3>
+	      	<% end %>
+      	<% end %>
+      </ol>
 
-            http://maps.googleapis.com/maps/api/directions/json?origin=<%=journey["origin"]%>&destination=<%=journey["destination"]%>&waypoints=<%= waypoint["way_lat"] %>,<%= waypoint["way_lng"]%>|<%= waypoint["way_lat"] %>,<%= waypoint["way_lng"]%>&sensor=false
-            
-            	<h3><% end %></h3>
-            <h3><% end %></h3>
+      <a href="http://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&sensor=false
+">link </a>
 
-        </section>
-    </aside>
+    <script>
+      var route_info = <%= render inline: @json_stuff %>
+
+    </script>
+
+    </section>
 </div>
+</div>
+

@@ -1,22 +1,9 @@
 
 <div id="panel">
 	<b>Start: </b>
-<!-- 	<select id="start" onchange="calcRoute();">
-	  <option value="Embarcadero Center, san francisco, ca">Embarcadero</option>
-	  <option value="Golden Gate Park, san francisco, ca">Golden Gate Park</option>
-	  <option value="411 Branan St, san francisco, ca">GA</option>
-	  <option value="berkeley, ca">berkeley</option>
-	  <option value="los angeles, ca">Los Angeles</option>
-	</select> -->
-
-
   <label for="start"></label>
   <input id="start" name="start" type="text"/>
-  <!-- <input name="commit" type="submit" onclick="calcRoute()"/> -->
-	  
-	
 	<b>End: </b>
-
 	<label for="end"></label>
   <input id="end" name="end" type="text"/>
   <input name="commit" type="submit" onclick="calcRoute()"/>
@@ -33,6 +20,9 @@
 
 </div>
 <%= flash[:message] %>
-<div id="map-canvas" style="float:left;width:75%; height:80%"></div>
-<div id="directionsPanel" style="float:right;width:25%; height 100%"></div>
-<div id="elevation_chart" style="float:left;width:75%; height:20%"></div>
+<div id="map-canvas"></div>
+<div id="right-side">
+<div id="elevation_chart"></div>
+<div id="directionsPanel"></div>
+</div>
+

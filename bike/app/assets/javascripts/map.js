@@ -1,5 +1,4 @@
 
-
 var rendererOptions = {
 	  draggable: true
 	};
@@ -27,13 +26,13 @@ var rendererOptions = {
 	  directionsDisplay.setMap(map);
 	  directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 
-	  var weatherLayer = new google.maps.weather.WeatherLayer({
-	    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-	  });
-	  weatherLayer.setMap(map);
+	  // var weatherLayer = new google.maps.weather.WeatherLayer({
+	  //   temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+	  // });
+	  // weatherLayer.setMap(map);
 
-	  var cloudLayer = new google.maps.weather.CloudLayer();
-	  cloudLayer.setMap(map);
+	  // var cloudLayer = new google.maps.weather.CloudLayer();
+	  // cloudLayer.setMap(map);
 
 	  var updateForm = function(){
 	  	var $start = $("#start");
@@ -70,40 +69,29 @@ var rendererOptions = {
 	  var selectedMode = document.getElementById('mode').value;
 	  var start = document.getElementById('start').value;
 	  var end = document.getElementById('end').value;
-	  // alert(start + "-" + end + "-" + selectedMode);
 
 	  var request = {
 	      origin:start,
 	      destination:end,
 	      travelMode: google.maps.TravelMode[selectedMode]
 	  };
+
 	  directionsService.route(request, function(response, status) {
 	    if (status == google.maps.DirectionsStatus.OK) {
-	    	console.log(response)
 	      directionsDisplay.setDirections(response);
 	    }
+	    // document.getElementsByClass('adp-substep').css("color","white");
 	  });
 	}
 
-	// function computeTotalDistance(result) {
-	//   var total = 0;
-	//   var myroute = result.routes[0];
-	//   for (var i = 0; i < myroute.legs.length; i++) {
-	//     total += myroute.legs[i].distance.value;
-	//   }
-	//   total = total / 1000.0;
-	//   document.getElementById('total').innerHTML = total + ' km';
-	// }
 
 	function createLatLngList(result) {
 	  var total = 0;
 	  var latlngList = [];
 	  var myroute = result.routes[0].legs[0];
 	  for (var i = 0; i < myroute.steps.length; i++) {
-	    latlngList.push(myroute.steps[i].end_location);
-	    
+	    latlngList.push(myroute.steps[i].end_location); 
 	  }
-
 	  drawPath(latlngList);
 	};
 
@@ -166,8 +154,11 @@ var rendererOptions = {
 	    legend: 'none',
 	    titleY: 'Elevation (m)'
 	  });
+	 
+
 	}
 
 
 	google.maps.event.addDomListener(window, 'load', initialize);
+
 
