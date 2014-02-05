@@ -1,7 +1,8 @@
 
-var rendererOptions = {
+	var rendererOptions = {
 	  draggable: true
 	};
+
 	var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
 	var directionsService = new google.maps.DirectionsService();
 	var elevator = new google.maps.ElevationService();
@@ -12,6 +13,7 @@ var rendererOptions = {
 	var infowindow = new google.maps.InfoWindow();
 	var polyline;
 
+
 	// Load the Visualization API and the columnchart package.
 	google.load('visualization', '1', {packages: ['columnchart']});
 
@@ -20,11 +22,24 @@ var rendererOptions = {
 	  var san_francisco = new google.maps.LatLng(37.7933, -122.3167);
 	  var mapOptions = {
 	    zoom:12,
-	    center: san_francisco
+	    center: san_francisco,
+	    mapTypeControl: true,
+	    mapTypeControlOptions: {
+	    	style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+	    	position: google.maps.ControlPosition.TOP_LEFT
+	    },
+	    panControl: false,
+	    panControlOptions: {
+	    	position: google.maps.ControlPosition.TOP_LEFT
+	    },
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    	styles:[{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill"},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"color":"#7dcdcd"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]}]
 	  }
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	  directionsDisplay.setMap(map);
 	  directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+	  // var control = directionsDisplay.setPanel(document.getElementById('directionsPanel');
+	  // 	control.style.display = '';
 
 	  // var weatherLayer = new google.maps.weather.WeatherLayer({
 	  //   temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
@@ -147,13 +162,22 @@ var rendererOptions = {
 	    data.addRow(['', elevations[i].elevation]);
 	  }
 
+	  var options = {
+          titleY: 'Elevation (m)',
+          height: 150,
+	    		legend: 'none',
+	    		backgroundColor: 'rgba(127, 140, 141,0.6)',
+	    		colors:['#34DDDD','red'],
+	    		fontName: 'Open Sans',
+	    		animation:{
+		        duration: 1000,
+		        easing: 'linear',
+		      }
+        };
+
 	  // Draw the chart using the data within its DIV.
 	  document.getElementById('elevation_chart').style.display = 'block';
-	  chart.draw(data, {
-	    height: 150,
-	    legend: 'none',
-	    titleY: 'Elevation (m)'
-	  });
+	  chart.draw(data,options);
 	 
 
 	}
