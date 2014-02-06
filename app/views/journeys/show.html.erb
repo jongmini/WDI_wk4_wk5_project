@@ -1,19 +1,17 @@
 
 
-<div id="my-start"><%= @journey["origin"] %></div>
-<div id="my-end"><%= @journey["destination"] %></div>
+<div id="my-start">Here is your route from <%= @journey["origin"] %></div>
+<div id="my-end">to <%= @journey["destination"] %></div>
 
+<% if @journey.waypoints != nil %>
+	<% @journey.waypoints.each do |waypoint| %>
+	<% @waypoints << (waypoint["way_lat"].to_f) %>
+	<% @waypoints << (waypoint["way_lng"].to_f) %>
+	<% end %>
+<% end %>
+<div id="waypoints"><% @waypoints %></div>
 
 <script>
-
-	var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
-	var directionsService = new google.maps.DirectionsService();
-	var my_map;
-
-	// var infowindow = new google.maps.InfoWindow();
-
-	// google.load('visualization', '1', {packages: ['columnchart']});
-
 	function initialize() {
 	  directionsDisplay = new google.maps.DirectionsRenderer();
 	  var san_francisco = new google.maps.LatLng(37.7933, -122.3167);
@@ -29,50 +27,38 @@
 	    panControlOptions: {
 	    	position: google.maps.ControlPosition.TOP_LEFT
 	    }
-	    
 	  }
 	  my_map = new google.maps.Map(document.getElementById('my-map-canvas'), mapOptions);
 	  directionsDisplay.setMap(my_map);
 	  directionsDisplay.setPanel(document.getElementById("directionsPanel"));
-
 	  calcRoute();
-
 	}
 
 
 	function calcRoute() {
 	  var my_start = document.getElementById('my-start').innerHTML;
 	  var my_end = document.getElementById('my-end').innerHTML;
-	  
-	  // var waypts = [];
-	  // var checkboxArray = document.getElementById("waypoints");
-	  // for (var i = 0; i < checkboxArray.length; i++) {
-	  //   if (checkboxArray.options[i].selected == true) {
-	  //     waypts.push({
-	  //         location:checkboxArray[i].value,
-	  //         stopover:true
-	  //     });
-	  //   }
-	  // }
-
+	  var checkboxArray = eval(document.getElementById("waypoints").innerHTML);
+	  var waypoints = [];
+	  if(checkboxArray!==undefined){
+	  	for (var i = 0; i < checkboxArray.length; i+=2) {
+	  	waypoints.push({location: new google.maps.LatLng(checkboxArray[i], checkboxArray[i+1]),
+	  	stopover:true
+	  	});
+	  }
+	}
 	  var request = {
 	      origin: my_start,
-	      // waypoints: waypts,
+	      waypoints: waypoints,
 	      destination: my_end,
 	      travelMode: google.maps.TravelMode.BICYCLING
 	  }
-	  console.log(request);
-
 	  directionsService.route(request, function(response, status) {
 	    if (status == google.maps.DirectionsStatus.OK) {
 	      directionsDisplay.setDirections(response);
-	      console.log(status);
-	      console.log(resonse);
 	    }
 	  });
 	}
-
-
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 	// $(document).on('ready page:load', initialize);
