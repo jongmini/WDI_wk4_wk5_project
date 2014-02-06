@@ -2,7 +2,8 @@ Bike::Application.routes.draw do
 
   resources :bikes, :users, :sessions, :journeys
 
-  # get '/bikes', as: :root
+  get "/" => redirect("/bikethere")
+  get "/bikethere" => "bikes#index"
 
   get "/signup" => "users#new"
   delete "/signout", to: "sessions#destroy"
@@ -10,14 +11,7 @@ Bike::Application.routes.draw do
   
 end
  
-#        bikes GET    /bikes(.:format)             bikes#index
-#              POST   /bikes(.:format)             bikes#create
-#     new_bike GET    /bikes/new(.:format)         bikes#new
-#    edit_bike GET    /bikes/:id/edit(.:format)    bikes#edit
-#         bike GET    /bikes/:id(.:format)         bikes#show
-#              PATCH  /bikes/:id(.:format)         bikes#update
-#              PUT    /bikes/:id(.:format)         bikes#update
-#              DELETE /bikes/:id(.:format)         bikes#destroy
+
 #        users GET    /users(.:format)             users#index
 #              POST   /users(.:format)             users#create
 #     new_user GET    /users/new(.:format)         users#new
