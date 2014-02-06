@@ -25,7 +25,7 @@ html, body, #map-canvas {
 }
 
 body {
-  background-image:url(image_path("../../assets/map.png"));
+  background-image:url(image_path("../../assets/map_copy.png"));
   background-size:100% 100%;
   background-repeat:no-repeat;
   background-attachment:fixed;
@@ -36,8 +36,19 @@ body {
   margin:0;
 }
 
+.container {
+  background-color: rgba(236, 240, 241,0.6);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  margin-top: 55px;
+}
+
+.container li {
+    font-size: 16px;
+}
+
 #map-canvas {
   z-index: 0;
+  margin-top: 55px;
 }
 
 #my-map-canvas {
@@ -49,7 +60,7 @@ body {
 
 #panel {
   position: absolute;
-  top: 5px;
+  top: 8px;
   left: 50%;
   margin-left: -350px;
   z-index: 500;
@@ -60,7 +71,7 @@ body {
 
 #modepanel {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 50%;
   margin-left: 150px;
   z-index: 500;
@@ -100,26 +111,17 @@ body {
 }
 
 
-.navbar {
-  display: inline;
-  padding: 10px;
-
-}
-
-.navbar-right {
-  float: right;
-}
-
 #navigation {
   height: 55px;
   width: 100%;
   background-color: white;
+  position:fixed;
+  z-index: 1;
 }
 
-.nav {
-  text-align: right;
-  margin: 8px;
-  display: inline;
+.navbar {
+  padding: 0, 20px;
+
 }
 
 
@@ -148,6 +150,8 @@ body {
   color: white;
   opacity: 0.7;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  margin-top: 65px;
+  margin-right: 20px;
 }
 
 #save_btn:hover {
@@ -159,4 +163,16 @@ body {
   display: none;
 }
 
+.showlist {
+  display: block;
+}
+
+#showlistbtn {
+  display: -webkit-box;
+  margin: 5px;
+}
+
+.btn {
+  margin: 5px;
+}
 
