@@ -1,0 +1,125 @@
+/*/ Place all the styles related to the bikes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/ */
+
+/*font-family: 'Lily Script One', cursive;
+font-family: 'Open Sans', sans-serif;*/
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+
+#title {
+  font-family: 'Lily Script One', cursive;
+  font-size: 40px;
+  color: black;
+  display: inline;
+  padding: 10px;
+}
+
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+#map-canvas {
+  z-index: 0;
+}
+
+#my-map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 0;
+}
+
+#panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -350px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+  z-index: 1;
+}
+
+#modepanel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: 150px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+  z-index: 1;
+}
+
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 25%;
+  height: 20%;
+  top: 120px;
+  right: 10px;
+}
+
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   top: 270px;
+   width: 25%; 
+   height: 60%;
+   z-index: 1;
+   overflow: auto;
+}
+
+.adp, .adp table, .adp-list, .adp-summary {
+  color: white;
+  background-color: rgba(127, 140, 141,0.6);
+
+}
+
+.adp-warnbox {
+  visibility: hidden;
+  height: 0px;
+}
+
+
+.navbar {
+  color: rgba(127, 140, 141,0);
+  background-color: rgba(127, 140, 141,0);
+  display: inline;
+  padding: 10px;
+
+}
+
+.navbar-right {
+  float: right;
+}
+
+.nav {
+  text-align: right;
+  margin: 8px;
+  display: inline;
+}
+
+
+
+.white {
+  color: white;
+}
+
+.hide {
+  visibility: hidden;
+  height: 0px;
+}
+
+#save-route{
+  position:absolute;
+  right:0px;
+  z-index: 10;
+
+}
+
+
