@@ -56,6 +56,9 @@ GEM
       mime-types (~> 1.18)
     execjs (2.0.2)
     ffi (1.9.3)
+    gon (5.0.1)
+      actionpack (>= 2.3.0)
+      json
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -158,6 +161,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  gon
   jbuilder (~> 1.2)
   jquery-rails
   meta_request
