@@ -80,7 +80,7 @@
 	  drawPath();
 	}
 
-	function calcRoute() {
+	function calcRoute(){
 	  var selectedMode = document.getElementById('mode').value;
 	  var start = document.getElementById('start').value;
 	  var end = document.getElementById('end').value;
@@ -94,10 +94,19 @@
 	  directionsService.route(request, function(response, status) {
 	    if (status == google.maps.DirectionsStatus.OK) {
 	      directionsDisplay.setDirections(response);
+	      showSaveBtn(status);
+	      // document.getElementById('save_btn').classList.toggle('hidden');
 	    }
-	    // document.getElementsByClass('adp-substep').css("color","white");
 	  });
+	  
 	}
+
+	function showSaveBtn(status){
+
+		if (status == google.maps.DirectionsStatus.OK) {
+	 		document.getElementById('save_btn').classList.toggle('hidden');
+	 	}
+	 	}
 
 
 	function createLatLngList(result) {
@@ -178,9 +187,17 @@
 	  // Draw the chart using the data within its DIV.
 	  document.getElementById('elevation_chart').style.display = 'block';
 	  chart.draw(data,options);
-	 
+
 
 	}
+ 	
+	 // $(document).on('ready page:load', function(){
+	 // 	$('#submit_btn').click(function(eve){
+	 // 		$('#save_btn').toggleClass('hidden');
+	 // 	});
+	 // });
+
+
 
 	// google.maps.event.addDomListener(window, 'load', initialize);
 
