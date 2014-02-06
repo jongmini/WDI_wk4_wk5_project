@@ -100,16 +100,6 @@ body {
 }
 
 
-.navbar {
-  display: inline;
-  padding: 10px;
-
-}
-
-.navbar-right {
-  float: right;
-}
-
 #navigation {
   height: 55px;
   width: 100%;
@@ -159,4 +149,7 @@ body {
   display: none;
 }
 
+#show_journey {
+  display: block;
+}
 

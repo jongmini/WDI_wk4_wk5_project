@@ -24,21 +24,27 @@
 			<div id="title">
 			Bike There
 		</div></a>
-		<div class="navbar-right">
-		<ul>
-        <% if signed_in? %>
-          <li class="nav"><%= link_to "My profile", current_user %></li>
-          <li class="nav">
-            <%= link_to "Sign out", signout_path, method: "delete" %>
-          </li>
-        <% else %>
-          <li class="nav"><%= link_to "Sign up", signup_path %></li>
-          <li class="nav"><%= link_to "Sign in", signin_path %></li>
-        <% end %>
-		</ul>
-		</div>
+		<div class="navbar-header navbar-right">
+    <% if signed_in? %>
+      <p class="navbar-text">
+        <%= link_to "My profile", current_user %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign out", signout_path, method: "delete" %>
+      </p>
+    <% else %>
+      <p class="navbar-text">
+        <%= link_to "Sign up", signup_path %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign in", signin_path %>
+      </p>
+    <% end %>
+  </div>
 </div>
 </div>
+
+
 
 <%= yield %>
 

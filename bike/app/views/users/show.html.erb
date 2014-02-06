@@ -1,15 +1,17 @@
+<div class="container">
+
 <div class="row">
 	<div class="span4">
     <section>
       <h3><%= current_user.name %></h3>
       <h3><%= current_user.email %></h3>
-      <ul>
+      <ul id="show_journey">
       	<% @journey.each do |journey| %>
         <li>name: <%= journey["name"]%><li>
 	      search: <%= journey["origin"] %> to <%= journey["destination"] %>
           <%= button_to "delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm" %>
-          <%= button_to "name this route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %>
-          <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %>
+          <%= button_to "name this route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-info btn-sm" %>
+          <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-primary btn-sm" %>
 		      
         <% end %>
       </ul>
@@ -17,5 +19,7 @@
 
     </section>
 </div>
+</div>
+
 </div>
 
