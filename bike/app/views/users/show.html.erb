@@ -5,13 +5,15 @@
     <section>
       <h3><%= current_user.name %></h3>
       <h3><%= current_user.email %></h3>
-      <ul id="show_journey">
+      <ul>
       	<% @journey.each do |journey| %>
-        <li>name: <%= journey["name"]%><li>
-	      search: <%= journey["origin"] %> to <%= journey["destination"] %>
+        <li class="showlist">name: <%= journey["name"]%></li>
+	      <li class="showlist">search: <%= journey["origin"] %> to <%= journey["destination"] %></li>
+        <div id="showlistbtn">
           <%= button_to "delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm" %>
           <%= button_to "name this route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-info btn-sm" %>
           <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-primary btn-sm" %>
+          </div>
 		      
         <% end %>
       </ul>
