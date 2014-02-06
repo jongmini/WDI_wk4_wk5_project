@@ -20,9 +20,16 @@ font-family: 'Open Sans', sans-serif;*/
 html, body, #map-canvas {
   height: 100%;
   margin: 0px;
-  padding: 0px
+  padding: 0px;
 }
 #map-canvas {
+  z-index: 0;
+}
+
+#my-map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
   z-index: 0;
 }
 
@@ -106,6 +113,13 @@ html, body, #map-canvas {
 .hide {
   visibility: hidden;
   height: 0px;
+}
+
+#save-route{
+  position:absolute;
+  right:0px;
+  z-index: 10;
+
 }
 
 

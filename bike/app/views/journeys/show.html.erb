@@ -1,0 +1,88 @@
+
+
+<div id="my-start"><%= @journey["origin"] %></div>
+<div id="my-end"><%= @journey["destination"] %></div>
+
+<script src="https://www.google.com/jsapi"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPjjq-ilS03GrIk9Og-wC1ulb0ymN_zmU&sensor=false"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+<script>
+
+	var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+
+	// var infowindow = new google.maps.InfoWindow();
+
+	// google.load('visualization', '1', {packages: ['columnchart']});
+
+	function initialize() {
+	  directionsDisplay = new google.maps.DirectionsRenderer();
+	  var san_francisco = new google.maps.LatLng(37.7933, -122.3167);
+	  var mapOptions = {
+	    zoom:12,
+	    center: san_francisco,
+	    mapTypeControl: true,
+	    mapTypeControlOptions: {
+	    	style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+	    	position: google.maps.ControlPosition.TOP_LEFT
+	    },
+	    panControl: false,
+	    panControlOptions: {
+	    	position: google.maps.ControlPosition.TOP_LEFT
+	    }
+	    
+	  }
+	  map = new google.maps.Map(document.getElementById('my-map-canvas'), mapOptions);
+	  directionsDisplay.setMap(map);
+	  directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+
+	  calcRoute();
+
+	}
+
+
+	function calcRoute() {
+	  var start = document.getElementById('my-start').innerHTML;
+	  var end = document.getElementById('my-end').innerHTML;
+	  var haight = new google.maps.LatLng(37.7699298, -122.4469157);
+		var oceanBeach = new google.maps.LatLng(37.7683909618184, -122.51089453697205);
+	  
+	  // var waypts = [];
+	  // var checkboxArray = document.getElementById("waypoints");
+	  // for (var i = 0; i < checkboxArray.length; i++) {
+	  //   if (checkboxArray.options[i].selected == true) {
+	  //     waypts.push({
+	  //         location:checkboxArray[i].value,
+	  //         stopover:true
+	  //     });
+	  //   }
+	  // }
+
+	  var request = {
+	      origin: start,
+	      // waypoints: waypts,
+	      destination: end,
+	      travelMode: google.maps.TravelMode.BICYCLING
+	  }
+	  console.log(request);
+
+	  directionsService.route(request, function(response, status) {
+	    if (status == google.maps.DirectionsStatus.OK) {
+	      directionsDisplay.setDirections(response);
+	      console.log(status);
+	      console.log(resonse);
+	    }
+	  });
+	}
+
+
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+	// $(document).on('ready page:load', initialize);
+
+</script>
+
+<div id="my-map-canvas">
+</div>

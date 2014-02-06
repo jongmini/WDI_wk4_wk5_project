@@ -5,7 +5,9 @@
       <h3><%= current_user.email %></h3>
       <ol>
       	<% @journey.each do |journey| %>
-	      <li><%= journey["origin"] %> to <%= journey["destination"] %></li>
+	      <li><%= journey["origin"] %> to <%= journey["destination"] %>
+          <%= button_to "delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm" %>
+          <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %></li>
 		      <h3><% journey.waypoints.each do |waypoint| %></h3>
 		      <h3><%= waypoint["way_lat"] %>, <%= waypoint["way_lng"]%></h3>
 	      	<% end %>
@@ -16,7 +18,7 @@
 ">link </a>
 
     <script>
-      var route_info = <%= render inline: @json_stuff %>
+      // var route_info = <%#= render inline: @json_stuff %>
 
     </script>
 

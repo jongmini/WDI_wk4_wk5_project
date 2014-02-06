@@ -32,7 +32,7 @@
 	    panControlOptions: {
 	    	position: google.maps.ControlPosition.TOP_LEFT
 	    },
-	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP, //Blue Essence from Snazzy Maps
     	styles:[{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill"},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"color":"#7dcdcd"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]}]
 	  }
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -167,7 +167,7 @@
           height: 150,
 	    		legend: 'none',
 	    		backgroundColor: 'rgba(127, 140, 141,0.6)',
-	    		colors:['#34DDDD','red'],
+	    		colors:['#4B0082','#34DDDD','red'],
 	    		fontName: 'Open Sans',
 	    		animation:{
 		        duration: 1000,
@@ -182,7 +182,8 @@
 
 	}
 
+	// google.maps.event.addDomListener(window, 'load', initialize);
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	$(document).on('ready page:load', initialize);
 
 

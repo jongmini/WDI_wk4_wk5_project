@@ -21,18 +21,21 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
   end
-  def edit
-    @journey = Journey.find(params[:id])
-  end
-  def update
-    @journey = Journey.find(params[:id])
-    @journey.update_attributes(params[:journey])
-    render :show
-  end
+  # def edit
+  #   @journey = Journey.find(params[:id])
+  # end
+  # def update
+  #   @journey = Journey.find(params[:id])
+  #   @journey.update_attributes(params[:journey])
+  #   render :show
+  # end
+
   def destroy
     journey = Journey.find(params[:id])
+    # binding.pry
     journey.delete
-    redirect_to(journeys_path)
+    user_id = current_user.id
+    redirect_to "/users/#{user_id}"
   end
 
 end

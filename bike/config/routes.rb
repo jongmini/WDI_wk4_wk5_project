@@ -7,7 +7,7 @@ Bike::Application.routes.draw do
   get "/signin" => "sessions#new"
   
 end
-
+ 
 #        bikes GET    /bikes(.:format)             bikes#index
 #              POST   /bikes(.:format)             bikes#create
 #     new_bike GET    /bikes/new(.:format)         bikes#new
