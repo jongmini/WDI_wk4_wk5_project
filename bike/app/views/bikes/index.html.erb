@@ -6,7 +6,7 @@
 	<b>End: </b>
 	<label for="end"></label>
   <input id="end" name="end" type="text"/>
-  <input name="commit" type="submit" onclick="calcRoute()"/>
+  <input id="submit_btn" name="commit" type="submit" onclick="calcRoute()"/>
 </div>
 
 <div id="modepanel">
@@ -30,7 +30,7 @@
 			<div id="end_div">
 				<input id="form_end" type="hidden" name="journey[end]">
 			</div>
-			<button> Save Route </button>
+			<button id="save_btn" class="hidden"> Save Route </button>
 	<% end %>
 </div>
 

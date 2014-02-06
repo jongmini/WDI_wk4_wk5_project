@@ -1,4 +1,3 @@
-  require "typhoeus"
 class UsersController < ApplicationController
 
 	def index
@@ -8,8 +7,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @journey = @user.journeys
     @waypoints=[]
-
-
   end
 
   def new

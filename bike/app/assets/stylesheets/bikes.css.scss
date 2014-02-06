@@ -17,11 +17,25 @@ font-family: 'Open Sans', sans-serif;*/
   padding: 10px;
 }
 
+
 html, body, #map-canvas {
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
+
+body {
+  background-image:url(image_path("../../assets/map.png"));
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position: left top;
+  position:absolute;
+  height:100%;
+  width: 100%;
+  margin:0;
+}
+
 #map-canvas {
   z-index: 0;
 }
@@ -87,8 +101,6 @@ html, body, #map-canvas {
 
 
 .navbar {
-  color: rgba(127, 140, 141,0);
-  background-color: rgba(127, 140, 141,0);
   display: inline;
   padding: 10px;
 
@@ -96,6 +108,12 @@ html, body, #map-canvas {
 
 .navbar-right {
   float: right;
+}
+
+#navigation {
+  height: 55px;
+  width: 100%;
+  background-color: white;
 }
 
 .nav {
@@ -120,6 +138,25 @@ html, body, #map-canvas {
   right:0px;
   z-index: 10;
 
+}
+
+#save_btn {
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #4B0082;
+  color: white;
+  opacity: 0.7;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+#save_btn:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+
+.hidden {
+  display: none;
 }
 
 

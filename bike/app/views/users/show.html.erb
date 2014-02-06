@@ -3,18 +3,16 @@
     <section>
       <h3><%= current_user.name %></h3>
       <h3><%= current_user.email %></h3>
-      <ol>
+      <ul>
       	<% @journey.each do |journey| %>
-	      <li><%= journey["origin"] %> to <%= journey["destination"] %>
+        <li>name: <%= journey["name"]%><li>
+	      search: <%= journey["origin"] %> to <%= journey["destination"] %>
           <%= button_to "delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm" %>
-          <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %></li>
-		      <% journey.waypoints.each do |waypoint| %>
-		      <% @waypoints.push(waypoint["way_lat"].to_f) %>
-           <% @waypoints.push(waypoint["way_lng"].to_f) %>
-	      	<% end %>
-          <%= @waypoints %>
-      	<% end %>
-      </ol>
+          <%= button_to "name this route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %>
+          <%= button_to "see this route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-danger btn-sm" %>
+		      
+        <% end %>
+      </ul>
 
 
     </section>

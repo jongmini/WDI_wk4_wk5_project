@@ -15,21 +15,22 @@ class JourneysController < ApplicationController
       end
     end
     flash[:message]="Your journey has been saved"
-
-    redirect_to '/bikes'
+    redirect_to '/bikethere'
   end
   def show
     @journey = Journey.find(params[:id])
     @waypoints=[]
   end
-  # def edit
-  #   @journey = Journey.find(params[:id])
-  # end
-  # def update
-  #   @journey = Journey.find(params[:id])
-  #   @journey.update_attributes(params[:journey])
-  #   render :show
-  # end
+  def edit
+    @journey = Journey.find(params[:id])
+  end
+  def update
+    journey = Journey.find(params[:id])
+    new_journey = params.require(:journey).permit(:name)
+    journey.update_attributes(new_journey)
+    user_id = current_user.id
+    redirect_to "/users/#{user_id}"
+  end
 
   def destroy
     journey = Journey.find(params[:id])

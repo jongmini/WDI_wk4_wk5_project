@@ -1,2 +1,12 @@
 <h1>Journeys#edit</h1>
 <p>Find me in app/views/journeys/edit.html.erb</p>
+
+
+<%= form_for @journey do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+<%= @journey["origin"] %> to <%= @journey["destination"] %>
+
+<%= f.submit class: "btn btn-primary" %>
+<% end %>
