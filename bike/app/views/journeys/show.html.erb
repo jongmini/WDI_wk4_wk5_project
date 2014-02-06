@@ -2,6 +2,16 @@
 
 <div id="my-start"><%= @journey["origin"] %></div>
 <div id="my-end"><%= @journey["destination"] %></div>
+<% if @journey.waypoints != nil %>
+<% @journey.waypoints.each do |waypoint| %>
+<% @waypoints << (waypoint["way_lat"].to_f) %>
+<% @waypoints << (waypoint["way_lng"].to_f) %>
+<% end %>
+<% end %>
+<div id="waypoints"><%= @waypoints %></div>
+
+
+
 
 
 <script>
@@ -44,20 +54,23 @@
 	  var my_start = document.getElementById('my-start').innerHTML;
 	  var my_end = document.getElementById('my-end').innerHTML;
 	  
-	  // var waypts = [];
-	  // var checkboxArray = document.getElementById("waypoints");
-	  // for (var i = 0; i < checkboxArray.length; i++) {
-	  //   if (checkboxArray.options[i].selected == true) {
-	  //     waypts.push({
-	  //         location:checkboxArray[i].value,
-	  //         stopover:true
-	  //     });
-	  //   }
-	  // }
+	  var waypts = [];
+	  var checkboxArray = eval(document.getElementById("waypoints").innerHTML);
+	  console.log(checkboxArray);
+
+	  var path = [];
+	  for (var i = 0; i < checkboxArray.length; i+=2) {
+	  path.push({location: new google.maps.LatLng(checkboxArray[i], checkboxArray[i+1]),
+	  	stopover:true
+	  	});
+	  	}
+	  console.log(path);
+
 
 	  var request = {
 	      origin: my_start,
 	      // waypoints: waypts,
+	      waypoints: path,
 	      destination: my_end,
 	      travelMode: google.maps.TravelMode.BICYCLING
 	  }
