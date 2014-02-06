@@ -1,0 +1,96 @@
+function getlonglat(index, addresses, callback, data) {
+  var data = data || [];
+  if(index < addresses.length){
+    var address = addresses[index];
+    geocoder.geocode({ 'address': address}, function(results, status) {
+      var coords = [];
+      if (status == google.maps.GeocoderStatus.OK) {
+        coords[0]=results[0].geometry.location.lat();
+        coords[1]=results[0].geometry.location.lng();
+        
+        var loc = new google.maps.LatLng(coords[0], coords[1]);
+        data.push(loc)
+        getlonglat(index+1, addresses,callback,data)
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  } else {
+    callback(data)
+  }
+}
+
+
+function codeAddress(event) {
+  event.preventDefault();
+  
+var address1 = document.getElementById("routeStart").value;
+var address2 = document.getElementById("routeEnd").value;
+
+  getlonglat(0, [address1,address2], calcRoute)
+}
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+function calcSavedRoute() {
+  
+  var rawStart = gon.trip[0];
+  var rawEnd = gon.trip.pop();
+
+  getlonglat(0,[rawStart, rawEnd], function(data){
+    var start = data[0], end = data[1];
+    var waypts = []; 
+    for (var i = 1; i < gon.trip.length; i+=2) {
+      waypts.push({
+        location: new google.maps.LatLng(gon.trip[i], gon.trip[i+1]),
+        stopover: false
+      });
+    }
+    var request = {
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
+    
+    
+  });
+
+}
+
+
+
+in Class "Trip"
+
+def self.get_full_trip(param)
+my_trip = Trip.find(param)
+full_trip = []
+full_trip << my_trip.start
+my_trip.waypoints.each do |waypoint|
+full_trip << waypoint.lat
+full_trip << waypoint.long
+end
+full_trip << my_trip.end
+end
+
+in TripController
+
+
+
+in the show page
+function makeMap(callback){
+map = new google.maps.Map(document.getElementById('map-canvas'));
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+    callback();
+    })(calcSavedRoute)

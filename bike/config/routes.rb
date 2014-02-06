@@ -2,6 +2,8 @@ Bike::Application.routes.draw do
 
   resources :bikes, :users, :sessions, :journeys
 
+  # get '/bikes', as: :root
+
   get "/signup" => "users#new"
   delete "/signout", to: "sessions#destroy"
   get "/signin" => "sessions#new"
