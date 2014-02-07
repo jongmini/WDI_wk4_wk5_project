@@ -137,11 +137,12 @@
 	  chart = new google.visualization.ColumnChart(document.getElementById('elevation_chart'));
 
 	  var path = [];
-	  for (var i = 0; i < list.length; i++) {
-	  path.push(new google.maps.LatLng(list[i].d, list[i].e))
-	  }
-
+	  if (list !== undefined){
+		  for (var i = 0; i < list.length; i++) {
+		  path.push(new google.maps.LatLng(list[i].d, list[i].e))
+		  }	
 	  console.log("This is the list: ", list);
+		}
 
 	  // Create a PathElevationRequest object using this array.
 	  // Ask for 25 samples along that path.
