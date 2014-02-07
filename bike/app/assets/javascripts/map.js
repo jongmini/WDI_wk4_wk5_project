@@ -102,11 +102,13 @@
 	}
 
 	function showSaveBtn(status){
-
-		if (status == google.maps.DirectionsStatus.OK) {
-	 		document.getElementById('save_btn').classList.toggle('hidden');
+		if (status == google.maps.DirectionsStatus.OK  && $('#signin').length !== 1) {
+	 		document.getElementById('save_btn').classList.remove('hidden');
 	 	}
+	 	else if (status == google.maps.DirectionsStatus.OK  && $('#signin').length === 1) {
+	 		document.getElementById('please').classList.remove('hidden');
 	 	}
+	 }
 
 
 	function createLatLngList(result) {
