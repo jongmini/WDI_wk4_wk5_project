@@ -88,6 +88,7 @@
 	  var request = {
 	      origin:start,
 	      destination:end,
+	      provideRouteAlternatives:true,
 	      travelMode: google.maps.TravelMode[selectedMode]
 	  };
 
