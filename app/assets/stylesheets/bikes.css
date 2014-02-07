@@ -241,3 +241,122 @@ div.modal-content {
   border-color: #7dcdcd;
 }
 
+.navbar-right {
+  /*position: absolute;*/
+  float: right;
+  top: 0px;
+  right: 25px;
+}
+
+@media (max-width: 1000px) {
+
+#panel {
+  position: fixed;
+  /*top: 60px;*/
+  left: 50%;
+  margin-left: -200px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#modepanel {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  margin-left: 60px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+.navbar-right {
+  float: right;
+  top: 0px;
+  right: 25px;
+}
+
+
+
+}
+
+@media (max-width: 800px) {
+
+#panel {
+  position: fixed;
+  /*top: 60px;*/
+  left: 50%;
+  margin-left: -150px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#modepanel {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  margin-left: 0px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#start, #end {
+  width: 100px;
+}
+
+.navbar-text {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.navbar-header, .navbar-right {
+  margin-right: 25px !important;
+}
+
+
+}
+
+@media (max-width: 700px) {
+
+#panel {
+  /*position: fixed;*/
+  float: right;
+  top: 60px;
+  left: 50%;
+  margin-left: -150px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#modepanel {
+  /*position: fixed;*/
+  float: right;
+  top: 90px;
+  left: 50%;
+  margin-left: 0px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#start, #end {
+  width: 100px;
+}
+
+.navbar-text {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.navbar-header, .navbar-right {
+  margin-right: 25px !important;
+}
+
+
+
+
+}
+
