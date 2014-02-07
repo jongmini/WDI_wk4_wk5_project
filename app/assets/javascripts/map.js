@@ -52,9 +52,15 @@
 	  var updateForm = function(){
 	  	var $start = $("#start");
 	  	var $end = $("#end");
+	  	// var $distance = $(".adp-summary").children().contents()[0];
+	  	// var $time = $(".adp-summary").children().contents()[2];
 
 	  	$("#form_start").val($start.val());
 	  	$("#form_end").val($end.val());
+	  	// $("#distance").val($distance.val());
+			// $("#time").val($time.val());
+			// console.log(distance);
+			// console.log(time);
 	  	// clearing the previous set of waypoints
 	  	$("#waypoints").empty();
 
@@ -88,6 +94,7 @@
 	  var request = {
 	      origin:start,
 	      destination:end,
+	      provideRouteAlternatives:true,
 	      travelMode: google.maps.TravelMode[selectedMode]
 	  };
 

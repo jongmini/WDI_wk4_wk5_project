@@ -1,15 +1,18 @@
 <div class="container">
+	<div class="row">
+    	<div class="col-lg-8 col-lg-offset-1">
 
-<h1>Journeys#edit</h1>
-
-
-<%= form_for @journey do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<br>
-<%= @journey["origin"] %> to <%= @journey["destination"] %>
-<br>
-<%= f.submit class: "btn btn-primary" %>
-<% end %>
-
+				<h3>Edit your route</h1>
+			
+				<%= form_for @journey do |f| %>
+				<%= f.label :name, class:"showlist" %>
+				<%= f.text_field :name %>
+				<br><br>
+				<li class="showlist"><%= @journey["origin"] %> to <%= @journey["destination"] %></li>
+				<br>
+				<%= f.submit "Update Route", class: "btn btn-info" %>
+				<% end %>
+	
+		</div>
+	</div>
 </div>
