@@ -280,11 +280,14 @@ div.modal-content {
 
 }
 
+
+
 @media (max-width: 800px) {
 
 #panel {
   position: fixed;
-  /*top: 60px;*/
+  /*float: right;*/
+  /*top: 30px;*/
   left: 50%;
   margin-left: -150px;
   z-index: 500;
@@ -293,13 +296,7 @@ div.modal-content {
 }
 
 #modepanel {
-  position: fixed;
-  top: 60px;
-  left: 50%;
-  margin-left: 0px;
-  z-index: 500;
-  background-color: #fff;
-  padding: 5px;
+  visibility: hidden;
 }
 
 #start, #end {
@@ -313,33 +310,43 @@ div.modal-content {
 
 .navbar-header, .navbar-right {
   margin-right: 25px !important;
+  margin-top: 10px !important;
 }
 
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 40%;
+  height: 20%;
+  top: 100px;
+  right: 10px;
+}
+
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   width: 40%; 
+   height: 63%;
+   z-index: 2;
+   overflow: auto;
+}
 
 }
 
-@media (max-width: 700px) {
+@media (max-width: 500px) {
 
 #panel {
-  /*position: fixed;*/
   float: right;
   top: 60px;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -130px;
   z-index: 500;
   background-color: #fff;
   padding: 5px;
 }
 
 #modepanel {
-  /*position: fixed;*/
-  float: right;
-  top: 90px;
-  left: 50%;
-  margin-left: 0px;
-  z-index: 500;
-  background-color: #fff;
-  padding: 5px;
+  visibility: hidden;
 }
 
 #start, #end {
@@ -353,10 +360,27 @@ div.modal-content {
 
 .navbar-header, .navbar-right {
   margin-right: 25px !important;
+  margin-top: 5px !important;
 }
 
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 80%;
+  height: 20%;
+  top: 100px;
+  right: 10px;
+}
 
-
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   top: 500px;
+   width: 80%; 
+   height: 30%;
+   z-index: 2;
+   overflow: auto;
+}
 
 }
 
