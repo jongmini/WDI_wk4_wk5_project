@@ -19,7 +19,7 @@
 	</select>
 
 </div>
-<%= flash[:message] %>
+
 <div id="save-route">
 	<%= form_for :journey,  url: journeys_path, method: "post", html: {id: "new_journey"} do |f| %>
 			<div id="start_div">
@@ -30,8 +30,15 @@
 			<div id="end_div">
 				<input id="form_end" type="hidden" name="journey[end]">
 			</div>
+		<!-- 	<div id="distance_div">
+				<input id="distance" type="hidden" name="journey[distance]">
+			</div>
+			<div id="time_div">
+				<input id="time" type="hidden" name="journey[time]">
+			</div> -->
 			<button id="save_btn" class="hidden"> Save Route </button>
 			<div id="please" class="hidden">Please sign in to save your route.</div>
+			<%#= flash[:message] %>
 	<% end %>
 </div>
 
