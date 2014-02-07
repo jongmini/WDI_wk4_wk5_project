@@ -197,19 +197,52 @@
 	  document.getElementById('elevation_chart').style.display = 'block';
 	  chart.draw(data,options);
 
-
 	}
  	
-	 // $(document).on('ready page:load', function(){
-	 // 	$('#submit_btn').click(function(eve){
-	 // 		$('#save_btn').toggleClass('hidden');
-	 // 	});
-	 // });
-
-
 
 	// google.maps.event.addDomListener(window, 'load', initialize);
 
 	$(document).on('ready page:load', initialize);
+
+
+	  //makes a new map with saved routes
+
+	  function calcMyRoute() {
+	  var my_start = document.getElementById('my-start').innerHTML;
+	  var my_end = document.getElementById('my-end').innerHTML;
+	  
+	  var waypts = [];
+	  var checkboxArray = eval(document.getElementById("waypoints").innerHTML);
+	  console.log(checkboxArray);
+
+	  var my_path = [];
+	  for (var i = 0; i < checkboxArray.length; i+=2) {
+	  my_path.push({location: new google.maps.LatLng(checkboxArray[i], checkboxArray[i+1]),
+	  	stopover:true
+	  	});
+	  	}
+	  console.log(my_path);
+
+
+	  var request = {
+	      origin: my_start,
+	      waypoints: my_path,
+	      destination: my_end,
+	      travelMode: google.maps.TravelMode.BICYCLING
+	  }
+	  console.log(request);
+
+	  directionsService.route(request, function(response, status) {
+	    if (status == google.maps.DirectionsStatus.OK) {
+	      directionsDisplay.setDirections(response);
+	      console.log(status);
+	      console.log(resonse);
+	    }
+	  });
+	  drawPath(my_path)
+	}
+	// end of calcMyRoute
+
+
 
 

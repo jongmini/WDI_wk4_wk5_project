@@ -62,6 +62,18 @@ body {
   z-index: 0;
 }
 
+#my-start, #my-end, #waypoints {
+  z-index: 50;
+  font-size: 20px;
+}
+
+#see-route {
+  z-index: 50;
+  visibility: hidden;
+  height: 0px;
+}
+
+
 #panel {
   position: fixed;
   top: 8px;
