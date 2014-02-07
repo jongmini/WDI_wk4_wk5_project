@@ -53,6 +53,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Sign in</h4>
       </div>
+      <div class="modal-form">
         <%= form_for(:session, url: sessions_path) do |f| %>
 
             <%= f.label :email %>
@@ -61,10 +62,13 @@
             <%= f.label :password %>
             <%= f.password_field :password %>
 
-            <%= f.submit "Sign in", class: "btn btn-large btn-primary"%>
-        <% end %>
-        <p class="navbar-text" data-toggle="modal" data-target="#signUpModal">
+            <p class="navbar-text" data-toggle="modal" data-target="#signUpModal">
         	New user? <%= link_to "Sign up now!", signup_path %></p>
+
+            <%= f.submit "Sign in", class: "btn btn-large btn-ocean"%>
+        <% end %>
+        
+       </div>
     </div>
   </div>
 </div>
@@ -78,6 +82,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Sign up</h4>
       </div>
+      	<div class="modal-form">
         <%= form_for(@user= User.new()) do |f| %>
           <% unless @user.errors.count == 0   %>
           <div class="alert alert-error">
@@ -106,8 +111,9 @@
           <%= f.password_field :password_confirmation %>
           <br>
 
-          <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+          <%= f.submit "Create my account", class: "btn btn-large btn-ocean" %>
       	<% end %>
+      </div>
 		</div>
   </div>
 </div>
