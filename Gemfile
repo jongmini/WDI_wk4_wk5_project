@@ -53,6 +53,10 @@ ruby "2.0.0"
 
 gem 'gon'
 
+group :assets do
+  gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
