@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to '/'
     else
-      redirect_to '/'
+      render :new
     end
   end
 
