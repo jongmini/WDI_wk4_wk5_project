@@ -21,7 +21,7 @@
 				<div class="navbar-header navbar-right">
 		    <% if signed_in? %>
 		      <p class="navbar-text">
-		        <%= link_to "My profile", current_user %>
+		        <%= link_to current_user.name, current_user %>
 		      </p>
 		      <p class="navbar-text">
 		        <%= link_to "Sign out", signout_path, method: "delete" %>

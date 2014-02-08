@@ -21,6 +21,7 @@ html, body, #map-canvas {
   height: 100%;
   margin: 0px;
   padding: 0px;
+
 }
 
 #margin_fix {
@@ -28,8 +29,8 @@ html, body, #map-canvas {
 }
 
 body {
-  background-image:url(image_path("../../assets/map_copy.png"));
-  background-size:100% 100%;
+  background-color: #7dcdcd !important;
+  background-size: 100%;
   background-repeat:no-repeat;
   background-attachment:fixed;
   background-position: left top;
@@ -48,6 +49,11 @@ body {
 
 .container li {
   font-size: 16px;
+}
+
+.field_with_errors {
+  width: 350px;
+  margin: 0px;
 }
 
 #map-canvas {
@@ -195,6 +201,16 @@ body {
   padding: 8px;
 }
 
+#flash {
+  color: #4B0082;
+  font-size: 16px;
+  margin-top: 60px;
+  margin-right: 10px;
+  z-index: 0;
+  background-color: rgba(127, 140, 141,0.6);
+  padding: 8px;
+}
+
 
 .hidden {
   display: none;
@@ -214,11 +230,6 @@ body {
   margin: 5px;
 }
 
-div.modal-content {
-  /*height: 200px;*/
-  /*width: 600px;*/
-}
-
 .modal-form {
   text-align: right;
   padding: 30px 100px 30px 0;
@@ -233,5 +244,168 @@ div.modal-content {
   color: #000;
   background-color: #7dcdcd;
   border-color: #7dcdcd;
+}
+
+.navbar-right {
+  float: right;
+  top: 0px;
+  right: 25px;
+}
+
+@media (max-width: 1000px) {
+
+#panel {
+  position: fixed;
+  /*top: 60px;*/
+  left: 50%;
+  margin-left: -200px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#modepanel {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  margin-left: 60px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+.navbar-right {
+  float: right;
+  top: 0px;
+  right: 25px;
+}
+
+
+}
+
+
+
+@media (max-width: 800px) {
+
+#panel {
+  position: fixed;
+  /*float: right;*/
+  top: 60px;
+  left: 55%;
+  margin-left: -150px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#modepanel {
+  visibility: hidden;
+}
+
+#start, #end {
+  width: 100px;
+}
+
+.navbar-text {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.navbar-header, .navbar-right {
+  margin-right: 25px !important;
+  margin-top: 10px !important;
+}
+
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 40%;
+  height: 20%;
+  top: 100px;
+  right: 10px;
+}
+
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   width: 40%; 
+   height: 63%;
+   z-index: 2;
+   overflow: auto;
+}
+
+}
+
+@media (max-width: 500px) {
+
+#title {
+  font-size: 30px;
+}
+
+/*#panel {
+  float: right;
+  top: 60px;
+  left: 50%;
+  margin-left: -130px;
+  z-index: 500;
+  background-color: #fff;
+  padding: 5px;
+}*/
+
+#panel {
+float: right;
+top: 0px;
+left: 70%;
+margin-left: -130px;
+z-index: 500;
+background-color: rgba(0,0,0,0) !important;
+padding: 5px;
+width: 160px;
+text-align: right;
+}
+
+#modepanel {
+  visibility: hidden;
+}
+
+#start, #end {
+  width: 100px;
+}
+
+.navbar-text {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.navbar-header, .navbar-right {
+  margin-right: 25px !important;
+  margin-top: 5px !important;
+}
+
+#elevation_chart {
+  position: fixed;
+  z-index: 1;
+  width: 80%;
+  height: 15%;
+  top: 100px;
+  right: 10px;
+}
+
+#directionsPanel {
+   position: fixed;
+   right: 10px;
+   top: 75%;
+   width: 80%; 
+   height: 30%;
+   z-index: 2;
+   overflow: auto;
+}
+
+#user_name, #user_email, #user_password, #user_password_confirmation {
+  width: 200px;
+
+}
+
+
 }
 
