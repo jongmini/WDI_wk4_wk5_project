@@ -3,21 +3,24 @@
     <div class="row">
     	<div class="col-lg-8 col-lg-offset-1">
         <section>
-          <h3 id="margin_fix">Hello, <%= current_user.name %></h3>
+          <h3 id="margin_fix">Hello, <%= current_user.name %>!</h3>
           <ul>
-          	<% @journey.each do |journey| %>
-              <% if journey["name"]==nil %>
-              <li class="showlist">name: please name this route</li>
-              <% else %>
-              <li class="showlist"> name: <%= journey["name"]%></li>
+            <% if @journey==[] %>
+            <h4> You don't have any saved routes. Create new bike routes! </h4>
+            <% else %>
+            	<% @journey.each do |journey| %>
+                <% if journey["name"]==nil %>
+                <li class="showlist">name: Give this route a name! </li>
+                <% else %>
+                <li class="showlist"> name: <%= journey["name"]%></li>
+                <% end %>
+      	      <li class="showlist">search: <%= journey["origin"] %> to <%= journey["destination"] %></li>
+              <div id="showlistbtn">
+                <%= button_to "Name This Route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-info btn-sm"%>
+                <%= button_to "See This Route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-primary btn-sm"%>
+                <%= button_to "Delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm"%>
+                </div>
               <% end %>
-    	      <li class="showlist">search: <%= journey["origin"] %> to <%= journey["destination"] %></li>
-            <div id="showlistbtn">
-              <%= button_to "Name This Route", {controller: :journeys, action: :edit, id: journey["id"] }, method: :get, class: "btn btn-info btn-sm"%>
-              <%= button_to "See This Route", {controller: :journeys, action: :show, id: journey["id"] }, method: :get, class: "btn btn-primary btn-sm"%>
-              <%= button_to "Delete", {controller: :journeys, action: :destroy, id: journey["id"] }, method: :delete, class: "btn btn-danger btn-sm"%>
-              </div>
-    		      
             <% end %>
           </ul>
         </section>

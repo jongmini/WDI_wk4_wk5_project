@@ -201,6 +201,16 @@ body {
   padding: 8px;
 }
 
+#flash {
+  color: #4B0082;
+  font-size: 16px;
+  margin-top: 60px;
+  margin-right: 10px;
+  z-index: 0;
+  background-color: rgba(127, 140, 141,0.6);
+  padding: 8px;
+}
+
 
 .hidden {
   display: none;
@@ -280,8 +290,8 @@ body {
 #panel {
   position: fixed;
   /*float: right;*/
-  /*top: 30px;*/
-  left: 50%;
+  top: 60px;
+  left: 55%;
   margin-left: -150px;
   z-index: 500;
   background-color: #fff;
