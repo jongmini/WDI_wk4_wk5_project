@@ -139,7 +139,7 @@
 		  }	
 	  console.log("This is the list: ", list);
 		}
-
+		console.log("path", path);
 	  // Create a PathElevationRequest object using this array.
 	  // Ask for 25 samples along that path.
 	  var pathRequest = {
@@ -165,6 +165,7 @@
 	  for (var i = 0; i < results.length; i++) {
 	    elevationPath.push(elevations[i].location);  //elevation[i].location = location in lat,lng format
 	  }
+	  console.log("elevationPath", elevationPath);
 
 	  // Extract the data from which to populate the chart.
 	  // Because the samples are equidistant, the 'Sample'
@@ -176,6 +177,8 @@
 	  for (var i = 0; i < results.length; i++) {
 	    data.addRow(['', elevations[i].elevation]);
 	  }
+
+	  console.log("data", data);
 
 	  var options = {
           titleY: 'Elevation (m)',
