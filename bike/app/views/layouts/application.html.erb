@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= favicon_link_tag 'bike_copy.png' %>
+	<link href='http://fonts.googleapis.com/css?family=Lily+Script+One|Open+Sans' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Bike There</title>
+  <script src="https://www.google.com/jsapi"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPjjq-ilS03GrIk9Og-wC1ulb0ymN_zmU&sensor=false"></script>
+	    <!-- // <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=weather"></script> -->
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="navigation">
+		<div class="navbar">
+			<a href='/bikethere' data-no-turbolink><div id="title">Bike There</div></a>
+				<div class="navbar-header navbar-right">
+		    <% if signed_in? %>
+		      <p class="navbar-text">
+		        <%= link_to current_user.name, current_user %>
+		      </p>
+		      <p class="navbar-text">
+		        <%= link_to "Sign out", signout_path, method: "delete" %>
+		      </p>
+		    <% else %>
+		      <p class="navbar-text" data-toggle="modal" data-target="#signUpModal">
+		        <%= link_to "Sign up", signup_path %>
+		      </p>
+		      <p class="navbar-text" data-toggle="modal" data-target="#signInModal" id="signin">
+		        <%= link_to "Sign in", signin_path %>
+		      </p>
+		    <% end %>
+		  </div>
+		</div>
+	</div>
+
+	<%= render 'layouts/signin_modal' %>
+
+	<%= render 'layouts/signup_modal' %>
+
+	<%= yield %>
+
+</body>
+</html>

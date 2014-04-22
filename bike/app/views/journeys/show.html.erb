@@ -1,0 +1,28 @@
+<div id="see-route">
+	<div id="my-start"><%= @journey["origin"] %></div>
+	<div id="my-end"><%= @journey["destination"] %></div>
+		<% if @journey.waypoints != nil %>
+			<% @journey.waypoints.each do |waypoint| %>
+			<% @waypoints << (waypoint["way_lat"].to_f) %>
+			<% @waypoints << (waypoint["way_lng"].to_f) %>
+			<% end %>
+		<% end %>
+	<div id="waypoints"><%= @waypoints %></div>
+</div>
+
+
+<div id="map-canvas"></div>
+<div id="right-side"></div>
+<div id="elevation_chart"></div>
+<div id="directionsPanel"></div>
+ 
+<script>
+
+	(function makeMap(callback){
+		map = new google.maps.Map(document.getElementById('map-canvas'));
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('directionsPanel'));
+		callback();
+})(calcMyRoute)
+
+</script>

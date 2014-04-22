@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Showing elevation along a path</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+var elevator;
+var map;
+var chart;
+var infowindow = new google.maps.InfoWindow();
+var polyline;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+// The following path marks a general path from Mt.
+// Whitney, the highest point in the continental United
+// States to Badwater, Death Valley, the lowest point.
+
+// var owenslake = new google.maps.LatLng(36.433269, -117.950916);
+// var beattyjunction = new google.maps.LatLng(36.588056, -116.943056);
+// var panamintsprings = new google.maps.LatLng(36.339722, -117.467778);
+// var badwater = new google.maps.LatLng(36.23998, -116.83171);
+
+// Load the Visualization API and the columnchart package.
+google.load('visualization', '1', {packages: ['columnchart']});
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom: 8,
+    center: chicago,
+    mapTypeId: 'terrain'
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  directionsDisplay.setMap(map);
+
+  // Create an ElevationService.
+  elevator = new google.maps.ElevationService();
+
+  // Draw the path, using the Visualization API and the Elevation service.
+  drawPath();
+}
+
+function calcRoute() {
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+// var whitney = new google.maps.LatLng(41.850033, -87.6500523);
+// var lonepine = new google.maps.LatLng(42.850033, -86.6500523);
+
+function drawPath() {
+
+  // Create a new chart in the elevation_chart DIV.
+  chart = new google.visualization.ColumnChart(document.getElementById('elevation_chart'));
+
+  var path = [ new google.maps.LatLng(4.850033, -87.6500523) , new google.maps.LatLng(42.850033, -86.6500523) ];
+
+  // Create a PathElevationRequest object using this array.
+  // Ask for 256 samples along that path.
+  var pathRequest = {
+    'path': path,
+    'samples': 100
+  }
+
+  // Initiate the path request.
+  elevator.getElevationAlongPath(pathRequest, plotElevation);
+}
+
+// Takes an array of ElevationResult objects, draws the path on the map
+// and plots the elevation profile on a Visualization API ColumnChart.
+function plotElevation(results, status) {
+  if (status != google.maps.ElevationStatus.OK) {
+    return;
+  }
+  var elevations = results; //elevation+location(lat,lng)+resolution
+
+  // Extract the elevation samples from the returned results
+  // and store them in an array of LatLngs.
+  var elevationPath = [];
+  for (var i = 0; i < results.length; i++) {
+    elevationPath.push(elevations[i].location);
+  }
+
+  // Display a polyline of the elevation path.
+  var pathOptions = {
+    path: elevationPath,
+    strokeColor: '#0000CC',
+    opacity: 0.4,
+    map: map
+  }
+  polyline = new google.maps.Polyline(pathOptions);
+
+  // Extract the data from which to populate the chart.
+  // Because the samples are equidistant, the 'Sample'
+  // column here does double duty as distance along the
+  // X axis.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Sample');
+  data.addColumn('number', 'Elevation');
+  for (var i = 0; i < results.length; i++) {
+    data.addRow(['', elevations[i].elevation]);
+  }
+
+  // Draw the chart using the data within its DIV.
+  document.getElementById('elevation_chart').style.display = 'block';
+  chart.draw(data, {
+    height: 150,
+    legend: 'none',
+    titleY: 'Elevation (m)'
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <div id="panel">
+    <b>Start: </b>
+    <select id="start" onchange="calcRoute();">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+
+    </select>
+    <b>End: </b>
+    <select id="end" onchange="calcRoute();">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+
+    </select>
+    </div>
+      <div id="map-canvas" style="height:250px;"></div>
+      <div id="elevation_chart"></div>
+    </div>
+  </body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <style>
+      html, body, #map-canvas {
+        height: 80%;
+        margin: 10px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom:7,
+    center: chicago
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  directionsDisplay.setMap(map);
+}
+
+function calcRoute() {
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="panel">
+    <b>Start: </b>
+    <select id="start" onchange="calcRoute();">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="berkeley, ca">berkeley</option>
+      <option value="san francisco, ca">San Francisco</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+    <b>End: </b>
+    <select id="end" onchange="calcRoute();">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="berkeley, ca">berkeley</option>
+      <option value="san francisco, ca">San Francisco</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+    </div>
+    <div id="map-canvas"></div>
+  </body>
+</html> -->
