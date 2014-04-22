@@ -60,6 +60,7 @@
 	  	// calling the function directionDisplay. dir is the result of the directions API call. 
 	  	var dir = directionsDisplay.getDirections();
 	  	// grabbing waypoints and iterating thru the array
+	  	console.log("dir.routes[0].legs[0].via_waypoints", dir.routes[0].legs[0].via_waypoints);
 	    dir.routes[0].legs[0].via_waypoints.forEach(function(waypoint,index){
 	    	// for each waypoint pass the lattitude(d) and longtitude(e) to the form which is then saved. 
 	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+waypoint.d+"'>")
