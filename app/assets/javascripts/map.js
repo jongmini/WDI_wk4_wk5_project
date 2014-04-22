@@ -62,7 +62,7 @@
 	  	// grabbing waypoints and iterating thru the array
 	 console.log("dir.routes[0].legs[0].via_waypoints", dir);
 	    dir.routes[0].legs[0].via_waypoints.forEach(function(waypoint,index){
-	    	console.log(waypoint);
+	    	console.log("waypoint", waypoint);
 	    	// for each waypoint pass the lattitude(d) and longtitude(e) to the form which is then saved. 
 	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+waypoint.d+"'>")
 	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][e]' value='"+waypoint.e+"'>")
