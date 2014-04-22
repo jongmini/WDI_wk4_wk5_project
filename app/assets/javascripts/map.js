@@ -158,7 +158,7 @@
 	    return;
 	  }
 	  var elevations = results; //elevation+location(lat,lng)+resolution
-
+	  console.log("elevations", elevations);
 	  // Extract the elevation samples from the returned results
 	  // and store them in an array of LatLngs.
 	  var elevationPath = [];
