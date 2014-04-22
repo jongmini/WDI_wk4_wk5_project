@@ -76,7 +76,7 @@
 	  calcRoute();
 
 	  // Draw the path, using the Visualization API and the Elevation service.
-	  drawPath();
+	  // drawPath();
 	}
 
 	function calcRoute(){
