@@ -135,7 +135,7 @@
 	  var path = [];
 	  if (list !== undefined){
 		  for (var i = 0; i < list.length; i++) {
-		  path.push(new google.maps.LatLng(list[i].d, list[i].e))
+		  path.push(new google.maps.LatLng(list[i].A, list[i].k))
 		  }	
 	  console.log("This is the list: ", list);
 		}
