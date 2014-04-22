@@ -61,10 +61,15 @@
 	  	var dir = directionsDisplay.getDirections();
 	  	// grabbing waypoints and iterating thru the array
 	 console.log("dir.routes[0].legs[0].via_waypoints", dir);
-	    dir.routes[0].legs[0].via_waypoints.forEach(function(waypoint,index){
+	    // dir.routes[0].legs[0].via_waypoints.forEach(function(waypoint,index){
+	    // 	// for each waypoint pass the lattitude(d) and longtitude(e) to the form which is then saved. 
+	    // 	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+waypoint.d+"'>")
+	    // 	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][e]' value='"+waypoint.e+"'>")
+	    // })
+			dir.routes[0].legs[0].steps.forEach(function(step,index){
 	    	// for each waypoint pass the lattitude(d) and longtitude(e) to the form which is then saved. 
-	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+waypoint.d+"'>")
-	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][e]' value='"+waypoint.e+"'>")
+	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+step.end_location.A+"'>")
+	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][e]' value='"+step.end_location.k+"'>")
 	    })
 	  }
 
