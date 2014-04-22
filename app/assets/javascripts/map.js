@@ -116,6 +116,7 @@
 	  var total = 0;
 	  var latlngList = [];
 	  var myroute = result.routes[0].legs[0];
+	  console.log("myroute", myroute);
 	  for (var i = 0; i < myroute.steps.length; i++) {
 	    latlngList.push(myroute.steps[i].end_location); 
 	  }
@@ -135,7 +136,7 @@
 	  var path = [];
 	  if (list !== undefined){
 		  for (var i = 0; i < list.length; i++) {
-		  path.push(new google.maps.LatLng(list[i].A, list[i].k))
+		  path.push(new google.maps.LatLng(list[i].A, list[i].k)) // previously list[i].d and list[i].e
 		  }	
 	  console.log("This is the list: ", list);
 		}
