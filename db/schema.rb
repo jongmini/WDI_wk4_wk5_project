@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140204053937) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "journeys", force: true do |t|
     t.string   "name"
     t.string   "origin"
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140204053937) do
     t.string   "remember_token"
   end
 
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   create_table "waypoints", force: true do |t|
     t.decimal  "way_lat"

@@ -33,7 +33,14 @@
 	    	position: google.maps.ControlPosition.TOP_LEFT
 	    },
 	    mapTypeId: google.maps.MapTypeId.ROADMAP, //Blue Essence from Snazzy Maps
-    	styles:[{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill"},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"color":"#7dcdcd"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]}]
+    	styles:[
+    	{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},
+    	{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},
+    	{"featureType":"landscape.man_made","elementType":"geometry.fill"},
+    	{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},
+    	{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},
+    	{"featureType":"water","stylers":[{"color":"#7dcdcd"}]},
+    	{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]}]
 	  }
 	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	  directionsDisplay.setMap(map);
@@ -41,26 +48,12 @@
 	  // var control = directionsDisplay.setPanel(document.getElementById('directionsPanel');
 	  // 	control.style.display = '';
 
-	  // var weatherLayer = new google.maps.weather.WeatherLayer({
-	  //   temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-	  // });
-	  // weatherLayer.setMap(map);
-
-	  // var cloudLayer = new google.maps.weather.CloudLayer();
-	  // cloudLayer.setMap(map);
-
 	  var updateForm = function(){
 	  	var $start = $("#start");
 	  	var $end = $("#end");
-	  	// var $distance = $(".adp-summary").children().contents()[0];
-	  	// var $time = $(".adp-summary").children().contents()[2];
 
 	  	$("#form_start").val($start.val());
 	  	$("#form_end").val($end.val());
-	  	// $("#distance").val($distance.val());
-			// $("#time").val($time.val());
-			// console.log(distance);
-			// console.log(time);
 	  	// clearing the previous set of waypoints
 	  	$("#waypoints").empty();
 
@@ -119,17 +112,20 @@
 
 
 	function createLatLngList(result) {
+		consoloe.log("result ", result);
 	  var total = 0;
 	  var latlngList = [];
 	  var myroute = result.routes[0].legs[0];
 	  for (var i = 0; i < myroute.steps.length; i++) {
 	    latlngList.push(myroute.steps[i].end_location); 
 	  }
+	  console.log("latlngList ", latlngList);
 	  drawPath(latlngList);
 	};
 
 
 	function drawPath(list) {
+		console.log("list ", list);
 	  var start = document.getElementById('start').value;
 	  var end = document.getElementById('end').value;
 

@@ -36,7 +36,7 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-group :development do
+group :development, :test do 
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request'
@@ -44,7 +44,15 @@ group :development do
 	gem 'pry-byebug'
 	gem 'pry-rails'
 	gem 'awesome_print'
-	gem 'quiet_assets' 
+	gem 'quiet_assets'
+	gem 'dotenv-rails'
+	gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'launchy'
+  gem 'database_cleaner'
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i  
+  gem 'guard-rspec' 
+  gem 'guard-livereload'
+ 
 end
 
 gem 'rails_12factor', group: :production
@@ -52,6 +60,8 @@ gem 'rails_12factor', group: :production
 ruby "2.0.0"
 
 gem 'gon'
+
+
 
 
 # Use unicorn as the app server
