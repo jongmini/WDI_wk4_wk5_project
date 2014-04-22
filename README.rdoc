@@ -1,4 +1,4 @@
-<h1>Bike There</h1>
+Bike There
 
 Bike There is the first major project I've completed during the 12-week Web Development Immersive program at General Assembly. 
 
