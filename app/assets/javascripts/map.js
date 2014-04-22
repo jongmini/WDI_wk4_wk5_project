@@ -112,7 +112,7 @@
 
 
 	function createLatLngList(result) {
-		consoloe.log("result ", result);
+		console.log("result ", result);
 	  var total = 0;
 	  var latlngList = [];
 	  var myroute = result.routes[0].legs[0];
