@@ -1,28 +1,6 @@
-== README
+<h1>Bike There</h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Bike There is the first major project I've completed during the 12-week Web Development Immersive program at General Assembly. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Bike There is inspired by my love for riding my bike around the San Francisco Bay Area and the pain of facing on an unexpected hill.
+Bike There is built on Google Directions API and uses Google Elevations API to retrieve the elevation information along any bike route.
