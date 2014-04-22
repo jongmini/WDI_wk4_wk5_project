@@ -11,7 +11,7 @@ class JourneysController < ApplicationController
 
     if !new_journey["waypoint"].nil? 
       new_journey["waypoint"].each do |key, waypoint|
-      Waypoint.create(way_lat: waypoint["d"], way_lng: waypoint["e"], journey_id: @journey.id)
+      Waypoint.create(way_lat: waypoint["A"], way_lng: waypoint["k"], journey_id: @journey.id)
       end
     end
     flash[:message]="Your journey has been saved"

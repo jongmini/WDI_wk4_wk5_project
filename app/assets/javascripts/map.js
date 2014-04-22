@@ -64,8 +64,8 @@
 	    dir.routes[0].legs[0].via_waypoints.forEach(function(waypoint,index){
 	    	console.log("waypoint", waypoint);
 	    	// for each waypoint pass the lattitude(d) and longtitude(e) to the form which is then saved. 
-	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][d]' value='"+waypoint.d+"'>")
-	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][e]' value='"+waypoint.e+"'>")
+	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][A]' value='"+waypoint.A+"'>")
+	    	$("#new_journey #waypoints").append("<input type='hidden' name='journey[waypoint]["+index+"][k]' value='"+waypoint.k+"'>")
 	    })
 	  }
 
@@ -151,7 +151,7 @@
 	  }
 
 	  // Initiate the path request.
-	  elevator.getElevationAlongPath(pathRequest, plotElevation);
+	  elevator.getElevationAlongPath(pathRequest, plotElevation); // elevation is returning 0 as the result!!!
 	}
 
 	// Takes an array of ElevationResult objects, draws the path on the map
@@ -178,7 +178,7 @@
 	  data.addColumn('string', 'Sample');
 	  data.addColumn('number', 'Elevation');
 	  for (var i = 0; i < results.length; i++) {
-	    data.addRow(['', elevations[i].elevation]);
+	    data.addRow(['', elevations[i].elevation]);  // currently elevations[i].elevation is 0
 	  }
 
 	  console.log("data", data);
